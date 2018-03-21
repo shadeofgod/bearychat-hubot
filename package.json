@@ -1,7 +1,11 @@
 {
-  "name": "hubot",
+  "name": "bearychat-hubot",
   "version": "1.0.0",
-  "main": "index.js",
+  "repository": {
+    "url": "https://github.com/shadeofgod/bearychat-hubot",
+    "type": "git"
+  },
+  "description": "bearychat hubot",
   "author": "shadeofgod <zoubingwu@gmail.com>",
   "license": "WTFPL",
   "scripts": {
