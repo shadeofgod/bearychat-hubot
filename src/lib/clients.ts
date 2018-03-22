@@ -3,16 +3,14 @@ import * as RTMClient from 'bearychat-rtm-client';
 import * as WebSocket from 'ws';
 import { HUBOT_TOKEN } from '../token';
 
-export const http = new HTTPClient(HUBOT_TOKEN);
+export const http: HTTPClient = new HTTPClient(HUBOT_TOKEN);
 
-export const rtm = new RTMClient({
-  url: function () {
+export const rtm: RTMClient = new RTMClient({
+  url(): string {
     return http.rtm.start()
-      .then(function (data) {
-        return data.ws_host;
-      });
+      .then((data) => data.ws_host);
   },
-  WebSocket: WebSocket
+  WebSocket,
 });
 
 export const RTMClientEvents = RTMClient.RTMClientEvents;
