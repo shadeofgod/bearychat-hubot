@@ -6,7 +6,13 @@
     "removeComments": true,
     "sourceMap": true,
     "outDir": "dist",
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "lib": [
+      "es2015",
+      "es2015.promise",
+      "dom",
+      "scripthost"
+    ],
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "**/*.spec.ts"]
