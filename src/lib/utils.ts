@@ -27,6 +27,15 @@ export function sendToChannel(rtm, { vchannel_id, channel_id, refer_key, text })
   });
 }
 
+export function sendP2PMessage(rtm, { text, vchannel_id, refer_key }) {
+  return rtm.send({
+    type: 'message',
+    text,
+    vchannel_id,
+    refer_key,
+  });
+}
+
 export function sendChannelTyping(rtm, { channel_id, uid }) {
   return rtm.send({
     type: 'channel_typing',
@@ -41,8 +50,9 @@ export function createChannelTyping(rtm, { channel_id, uid }) {
   };
 }
 
-export function createReplyFunction(rtm, { vchannel_id, channel_id, refer_key }) {
+export function createReplyWithTyping(rtm, { vchannel_id, channel_id, refer_key, uid }) {
   return (text: string) => {
+    sendChannelTyping(rtm, { channel_id, uid });
     return sendToChannel(rtm, {
       text,
       vchannel_id,
@@ -52,13 +62,11 @@ export function createReplyFunction(rtm, { vchannel_id, channel_id, refer_key })
   };
 }
 
-export function createReplyWithTyping(rtm, { vchannel_id, channel_id, refer_key, uid }) {
+export function createP2PReply(rtm, { vchannel_id, refer_key, uid, to_uid }) {
   return (text: string) => {
-    sendChannelTyping(rtm, { channel_id, uid });
-    return sendToChannel(rtm, {
+    return sendP2PMessage(rtm, {
       text,
       vchannel_id,
-      channel_id,
       refer_key,
     });
   };
