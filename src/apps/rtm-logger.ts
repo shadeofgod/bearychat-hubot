@@ -8,20 +8,30 @@ export default function RTMLogger(clients) {
   rtm.on(Events.ERROR, handleError);
 
   function handleOnline(): void {
+    console.log('====================================');
     console.log('ONLINE');
+    console.log('====================================\n\n');
   }
 
   function handleOffline(): void {
+    console.log('====================================');
     console.log('OFFLINE');
+    console.log('====================================\n\n');
   }
 
   function handleRTMEvent(message: object): void {
-    console.log('MESSAGE');
+    console.log('====================================');
+    console.log('EVENT MESSAGE RECEIVED:');
+    console.log('========');
     console.log(message);
+    console.log('====================================\n\n');
   }
 
   function handleError(errorEvent: object): void {
+    console.log('====================================');
     console.log('ERROR');
+    console.log('=========');
     console.error(errorEvent);
+    console.log('====================================\n\n');
   }
 }
